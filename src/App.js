@@ -57,7 +57,7 @@ export default function App() {
                 <div className="l-footer footer">
                     <div className="state-message js-state-message">{state.message}</div>
                     <div>
-                        <a className="button js-restart" onClick={() => dispatch({ type: "CLICK_RESTART" })}>RESTART</a>
+                        <button className="button js-restart" onClick={() => dispatch({ type: "CLICK_RESTART" })}>RESTART</button>
                     </div>
                 </div>
             </main>
