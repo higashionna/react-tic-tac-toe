@@ -1,5 +1,5 @@
 import React from 'react'
-import { useStore, useDispatch } from './context'
+
 import Footer from './modules/Footer'
 import Board from './modules/Board'
 import Header from './modules/Header'

@@ -4,6 +4,7 @@ import { useStore, useDispatch } from '../context'
 export default function Footer() {
     const state = useStore()
     const dispatch = useDispatch()
+
     return (
         < div className="l-footer footer" >
             <div className="state-message js-state-message">{state.message}</div>

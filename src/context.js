@@ -1,9 +1,7 @@
 import React, { useReducer, useMemo } from 'react'
 import styled from 'styled-components'
 
-
-const storeContext = React.createContext();
-const dispatchContext = React.createContext();
+// const
 
 const Active = styled.div`
     border-bottom: 4px solid black;
@@ -65,6 +63,8 @@ function checkWinner(cells) {
         }
     }
 }
+
+// Hooks Custom Reducer Create
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -139,6 +139,11 @@ const reducer = (state, action) => {
         default: return state
     }
 }
+
+// Create Store
+
+const storeContext = React.createContext();
+const dispatchContext = React.createContext();
 
 export const StoreProvider = ({ children }) => {
     const [store, dispatch] = useReducer(reducer, initialState)
