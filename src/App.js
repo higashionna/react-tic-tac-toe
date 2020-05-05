@@ -1,6 +1,5 @@
-
 import React from 'react'
-import useClickReducer from './useClickReducer'
+import { useStore, useDispatch } from './context'
 
 import "./App.css"
 import styled from 'styled-components'
@@ -18,7 +17,8 @@ const Cell = styled.td`
     font-size: 25px;    
 `
 export default function App() {
-    const [state, dispatch] = useClickReducer()
+    const state = useStore()
+    const dispatch = useDispatch()
     const cell = (i) => <Cell className="cell js-cell" onClick={() => dispatch({ type: "CLICK_CELL", index: i })}>{state.cells[i]}</Cell>
 
     return (

@@ -1,6 +1,9 @@
-import React, { useReducer } from 'react'
-
+import React, { useReducer, useMemo } from 'react'
 import styled from 'styled-components'
+
+
+const storeContext = React.createContext();
+const dispatchContext = React.createContext();
 
 const Active = styled.div`
     border-bottom: 4px solid black;
@@ -137,7 +140,24 @@ const reducer = (state, action) => {
     }
 }
 
-export default function useClickReducer() {
-    const [store, dispatch] = useReducer(reducer, initialState);
-    return [store, dispatch];
+export const StoreProvider = ({ children }) => {
+    const [store, dispatch] = useReducer(reducer, initialState)
+    const contextValue = useMemo(() => [store, dispatch],
+        [store, dispatch],
+    )
+
+    return (
+        <dispatchContext.Provider value={contextValue[1]}>
+            <storeContext.Provider value={contextValue[0]}>
+                {children}
+            </storeContext.Provider>
+        </dispatchContext.Provider>
+    )
+}
+
+export function useStore() {
+    return React.useContext(storeContext)
+}
+export function useDispatch() {
+    return React.useContext(dispatchContext)
 }
