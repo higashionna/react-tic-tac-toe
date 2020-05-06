@@ -49,19 +49,18 @@ const winLine = [
     [2, 4, 6],
 ]
 
-function checkWinner(cells) {
-    for (let i = 0; i <= winLine.length - 1; i++) {
-        const winLineCell = winLine[i]
-        let a = cells[winLineCell[0]]
-        let b = cells[winLineCell[1]]
-        let c = cells[winLineCell[2]]
+function checkWinner(cells, winLine) {
+    return winLine.some((item) => {
+        let a = cells[item[0]]
+        let b = cells[item[1]]
+        let c = cells[item[2]]
         if (a === null || b === null || c === null) {
-            continue
+            return false
         }
         if (a === b && b === c) {
             return true
         }
-    }
+    })
 }
 
 // Hooks Custom Reducer Create
@@ -91,7 +90,7 @@ const reducer = (state, action) => {
                 message = STATUSES.draw
             }
 
-            if (checkWinner(cells)) {
+            if (checkWinner(cells, winLine)) {
                 progress = false
                 const winMessage = isCircleTurn ? STATUSES.win.replace('%name%', CHARACTERS.circle) : STATUSES.win.replace('%name%', CHARACTERS.cross)
                 message = winMessage
